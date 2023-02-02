@@ -12,7 +12,7 @@ Then, open your terminal and install the node modules:
 npm i
 ```
 
-Finally, run the file!
+Finally, run the node code!
 
 ```bash
 node .
