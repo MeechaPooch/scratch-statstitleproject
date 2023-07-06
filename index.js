@@ -53,7 +53,7 @@ sess.on("connected", async () => {
             },
             "referrer": "https://scratch.mit.edu/",
             "referrerPolicy": "strict-origin-when-cross-origin",
-            "body": `{\"title\":\"This project has ${commafy(projectStats.views)} VIEWS\",\"instructions\":\"This project has:\\n${commafy(projectStats.views)} VIEWS, \\n${commafy(projectStats.loves)} LOVES,\\n${commafy(projectStats.favorites)} FAVORITES,\\n${commafy(projectStats.remixes)} REMIXES!\\nRead notes/credits to learn how it works!\"}`,
+            "body": `{\"title\":\"This project has ${commafy(projectStats.views)} VIEWS\",\"instructions\":\"My most recent follower:\\n. . . @${(await getLatestFollower(info.username)).username}\\nThis project has:\\n. . . ${commafy(projectStats.views)} VIEWS, \\n. . . ${commafy(projectStats.loves)} LOVES,\\n. . . ${commafy(projectStats.favorites)} FAVORITES,\\n. . . ${commafy(projectStats.remixes)} REMIXES!\\nRead notes/credits to learn how it works!\"}`,
             "method": "PUT",
             "mode": "cors"
         }).then(async res => {/*console.log(await res.json()) */ });
@@ -69,3 +69,12 @@ sess.on("connected", async () => {
     }
 
 });
+
+
+function followersRequest(user,limit) {
+    if(!limit) {limit = 20}
+    return fetch(`https://api.scratch.mit.edu/users/${user}/followers?limit=${limit}&rand=${Math.random()}`);
+}
+async function getLatestFollower(user) {
+    return (await (await followersRequest(user,1)).json())[0]
+}
