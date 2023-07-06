@@ -36,7 +36,7 @@ sess.on("connected", async () => {
         await sleep(1000)
         // try {
 
-        let projectStats = (await (await fetch(`https://api.scratch.mit.edu/projects/${info.projectId}`)).json()).stats;
+        let projectStats = (await (await fetch(`https://api.scratch.mit.edu/projects/${info.projectId}?rand=${Math.random()}`)).json()).stats;
         // if(projectStats.loves === lastProjectStats.loves && projectStats.favorites === lastProjectStats.favorites && projectStats.remixes === lastProjectStats.remixes && projectStats.views === lastProjectStats.views) {continue;}
         // else {lastProjectStats = projectStats}
         // console.log(projectStats)
