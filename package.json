@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "node-fetch": "^2.6.1",
-    "scratch-api": "^1.1.11"
+    "scratch-api": "^1.1.11",
+    "scratchcloudapi": "^1.1.3"
   }
 }
